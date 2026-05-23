@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Search Donor</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* SEARCH FILTER */
+
+.filter-box{
+max-width:400px;
+margin:auto;
+margin-bottom:50px;
+}
+
+.filter-box select{
+width:100%;
+padding:15px;
+border-radius:10px;
+border:1px solid #ccc;
+font-size:16px;
+outline:none;
+}
+
+/* HIDE DONORS */
+
+.hide{
+display:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav>
+<h1>BloodCare</h1>
+
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="donors.html">Search Donor</a></li>
+<li><a href="register.html">Register</a></li>
+<li><a href="tips.html">Emergency Tips</a></li>
+</ul>
+</nav>
+
+<section class="donor-container">
+
+<h1 style="text-align:center;color:#c1121f;margin-bottom:20px;">
+Find Blood Donors
+</h1>
+
+<!-- FILTER OPTION -->
+
+<div class="filter-box">
+
+<select id="bloodFilter">
+
+<option value="all">Select Blood Group</option>
+
+<option value="A+">A+</option>
+<option value="A-">A-</option>
+<option value="B+">B+</option>
+<option value="B-">B-</option>
+<option value="O+">O+</option>
+<option value="O-">O-</option>
+<option value="AB+">AB+</option>
+<option value="AB-">AB-</option>
+
+</select>
+
+</div>
+
+<div class="donor-grid">
+
+<!-- DONOR 1 -->
+
+<div class="donor-card"
+
+data-name="Rahul Kumar"
+data-age="24"
+data-group="A+"
+data-location="Chennai"
+data-phone="9876543210"
+data-date="12 May 2026"
+data-status="Available Now">
+
+<div class="blood">A+</div>
+
+<h2>Rahul Kumar</h2>
+
+<p>📍 Chennai</p>
+
+<p>📞 9876543210</p>
+
+<p>✅ Ready to Donate</p>
+
+</div>
+
+<!-- DONOR 2 -->
+
+<div class="donor-card"
+
+data-name="Priya Sharma"
+data-age="26"
+data-group="O-"
+data-location="Bangalore"
+data-phone="9876543211"
+data-date="02 May 2026"
+data-status="Emergency Donor">
+
+<div class="blood">O-</div>
+
+<h2>Priya Sharma</h2>
+
+<p>📍 Bangalore</p>
+
+<p>📞 9876543211</p>
+
+<p>✅ Available Now</p>
+
+</div>
+
+<!-- DONOR 3 -->
+
+<div class="donor-card"
+
+data-name="Arjun Das"
+data-age="28"
+data-group="B+"
+data-location="Hyderabad"
+data-phone="9876543212"
+data-date="20 April 2026"
+data-status="Available Today">
+
+<div class="blood">B+</div>
+
+<h2>Arjun Das</h2>
+
+<p>📍 Hyderabad</p>
+
+<p>📞 9876543212</p>
+
+<p>✅ Emergency Donor</p>
+
+</div>
+
+<!-- DONOR 4 -->
+
+<div class="donor-card"
+
+data-name="Sneha Reddy"
+data-age="23"
+data-group="AB+"
+data-location="Chennai"
+data-phone="9876543213"
+data-date="15 May 2026"
+data-status="Ready to Donate">
+
+<div class="blood">AB+</div>
+
+<h2>Sneha Reddy</h2>
+
+<p>📍 Chennai</p>
+
+<p>📞 9876543213</p>
+
+<p>✅ Ready to Donate</p>
+
+</div>
+
+<!-- DONOR 5 -->
+
+<div class="donor-card"
+
+data-name="Vikram Singh"
+data-age="30"
+data-group="O+"
+data-location="Coimbatore"
+data-phone="9876543214"
+data-date="10 April 2026"
+data-status="Available">
+
+<div class="blood">O+</div>
+
+<h2>Vikram Singh</h2>
+
+<p>📍 Coimbatore</p>
+
+<p>📞 9876543214</p>
+
+<p>✅ Available Today</p>
+
+</div>
+
+<!-- DONOR 6 -->
+
+<div class="donor-card"
+
+data-name="Meera Joseph"
+data-age="25"
+data-group="A-"
+data-location="Madurai"
+data-phone="9876543215"
+data-date="01 May 2026"
+data-status="Active Donor">
+
+<div class="blood">A-</div>
+
+<h2>Meera Joseph</h2>
+
+<p>📍 Madurai</p>
+
+<p>📞 9876543215</p>
+
+<p>✅ Active Donor</p>
+
+</div>
+
+</section>
+
+<!-- JAVASCRIPT FILTER -->
+
+<script>
+
+const filter = document.getElementById("bloodFilter");
+
+const donors = document.querySelectorAll(".donor-card");
+
+filter.addEventListener("change", function(){
+
+const selected = filter.value;
+
+donors.forEach(function(card){
+
+const group = card.getAttribute("data-group");
+
+if(selected === "all" || selected === group){
+
+card.classList.remove("hide");
+
+}
+else{
+
+card.classList.add("hide");
+
+}
+
+});
+
+});
+
+</script>
+<!-- EMERGENCY BUTTON -->
+
+<button id="emergencyBtn">
+
+ Need Blood Urgently?
+
+</button>
+<!-- EMERGENCY POPUP -->
+
+<div class="popup" id="popup">
+
+<div class="popup-content">
+
+<span id="closeBtn">&times;</span>
+
+<h2>Emergency Blood Request</h2>
+
+<form>
+
+<select>
+
+<option>Select Blood Group</option>
+
+<option>A+</option>
+<option>A-</option>
+<option>B+</option>
+<option>B-</option>
+<option>O+</option>
+<option>O-</option>
+<option>AB+</option>
+<option>AB-</option>
+
+</select>
+
+<input type="text" placeholder="Hospital Name">
+
+<input type="tel" placeholder="Contact Number">
+
+<textarea placeholder="Emergency Details"></textarea>
+
+<button type="submit">Submit Request</button>
+
+</form>
+
+</div>
+
+</div>
+<script>
+
+/* EMERGENCY POPUP */
+
+const emergencyBtn = document.getElementById("emergencyBtn");
+
+const popup = document.getElementById("popup");
+
+const closeBtn = document.getElementById("closeBtn");
+
+/* OPEN POPUP */
+
+emergencyBtn.addEventListener("click", function(){
+
+popup.style.display = "flex";
+
+});
+
+/* CLOSE POPUP */
+
+closeBtn.addEventListener("click", function(){
+
+popup.style.display = "none";
+
+});
+
+/* CLOSE WHEN CLICK OUTSIDE */
+
+window.addEventListener("click", function(e){
+
+if(e.target == popup){
+
+popup.style.display = "none";
+
+}
+
+});
+
+</script>
+<script>
+
+/* COUNTER ANIMATION */
+
+const counters = document.querySelectorAll(".counter");
+
+counters.forEach(counter => {
+
+counter.innerText = "0";
+
+const updateCounter = () => {
+
+const target = +counter.getAttribute("data-target");
+
+const current = +counter.innerText;
+
+const increment = target / 100;
+
+if(current < target){
+
+counter.innerText = `${Math.ceil(current + increment)}`;
+
+setTimeout(updateCounter, 20);
+
+}
+else{
+
+counter.innerText = target + "+";
+
+}
+
+};
+
+updateCounter();
+
+});
+
+</script>
+<!-- DONOR POPUP -->
+
+<div class="donor-popup" id="donorPopup">
+
+<div class="popup-box">
+
+<span id="closePopup">&times;</span>
+
+<h2 id="popupName"></h2>
+
+<p><strong>Age:</strong> <span id="popupAge"></span></p>
+
+<p><strong>Blood Group:</strong> <span id="popupGroup"></span></p>
+
+<p><strong>Location:</strong> <span id="popupLocation"></span></p>
+
+<p><strong>Phone:</strong> <span id="popupPhone"></span></p>
+
+<p><strong>Last Donated:</strong> <span id="popupDate"></span></p>
+
+<p><strong>Availability:</strong> <span id="popupStatus"></span></p>
+
+</div>
+
+</div>
+<script>
+
+/* DONOR POPUP */
+
+const donorCards = document.querySelectorAll(".donor-card");
+
+const donorPopup = document.getElementById("donorPopup");
+
+const closePopup = document.getElementById("closePopup");
+
+/* POPUP ELEMENTS */
+
+const popupName = document.getElementById("popupName");
+
+const popupAge = document.getElementById("popupAge");
+
+const popupGroup = document.getElementById("popupGroup");
+
+const popupLocation = document.getElementById("popupLocation");
+
+const popupPhone = document.getElementById("popupPhone");
+
+const popupDate = document.getElementById("popupDate");
+
+const popupStatus = document.getElementById("popupStatus");
+
+/* CLICK DONOR CARD */
+
+donorCards.forEach(card => {
+
+card.addEventListener("click", () => {
+
+popupName.innerText = card.dataset.name;
+
+popupAge.innerText = card.dataset.age;
+
+popupGroup.innerText = card.dataset.group;
+
+popupLocation.innerText = card.dataset.location;
+
+popupPhone.innerText = card.dataset.phone;
+
+popupDate.innerText = card.dataset.date;
+
+popupStatus.innerText = card.dataset.status;
+
+/* SHOW POPUP */
+
+donorPopup.style.display = "flex";
+
+});
+
+});
+
+/* CLOSE POPUP */
+
+closePopup.addEventListener("click", () => {
+
+donorPopup.style.display = "none";
+
+});
+
+/* CLOSE OUTSIDE CLICK */
+
+window.addEventListener("click", (e) => {
+
+if(e.target == donorPopup){
+
+donorPopup.style.display = "none";
+
+}
+
+});
+
+</script>
+
+</body>
+</html>
