@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="BloodCare – India's most trusted blood donor finder platform. Find donors, save lives instantly."/>
+<title>BloodCare – Save Lives, Donate Blood</title>
+<link rel="stylesheet" href="css/style.css?v=2"/>
+<link rel="stylesheet" href="css/home.css?v=2"/>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader" role="status" aria-label="Loading BloodCare">
+  <div class="loader-heart"></div>
+  <p class="loader-text">BloodCare</p>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <a href="index.html" class="navbar-brand">
+    <div class="brand-icon" aria-hidden="true">❤️</div>
+    BloodCare
+  </a>
+  <ul class="nav-links" role="menubar">
+    <li><a href="index.html" class="active" role="menuitem">Home</a></li>
+    <li><a href="donors.html" role="menuitem">Donors</a></li>
+    <li><a href="hospitals.html" role="menuitem">Hospitals</a></li>
+    <li><a href="community.html" role="menuitem">Community</a></li>
+    <li><a href="emergency.html" role="menuitem">Emergency</a></li>
+    <li><a href="education.html" role="menuitem">Learn</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn-icon" id="themeToggle" aria-label="Toggle dark mode" title="Toggle theme">🌙</button>
+    <a href="register.html" class="btn btn-primary btn-sm">Become Donor</a>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav" role="navigation">
+  <a href="index.html" class="active">🏠 Home</a>
+  <a href="donors.html">🩸 Donors</a>
+  <a href="hospitals.html">🏥 Hospitals</a>
+  <a href="community.html">👥 Community</a>
+  <a href="emergency.html">🚨 Emergency</a>
+  <a href="education.html">📚 Learn</a>
+  <a href="register.html" class="btn btn-primary" style="text-align:center;margin-top:8px;">Become a Donor</a>
+</div>
+
+<!-- HERO SECTION -->
+<section class="hero-section" id="home">
+  <div class="particles" id="particles" aria-hidden="true"></div>
+  <div class="hero-bg-orb orb-1" aria-hidden="true"></div>
+  <div class="hero-bg-orb orb-2" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="hero-text reveal">
+      <div class="hero-tag">
+        <span class="status-dot emergency"></span>
+        <span>Live Donors Available</span>
+      </div>
+      <h1 class="hero-title">
+        Donate Blood,<br/>
+        <span>Save a Life</span><br/>
+        Today
+      </h1>
+      <p class="hero-desc">Every drop counts. Connect with verified blood donors in your city within minutes. Join India's fastest-growing blood donation network.</p>
+      <div class="hero-actions">
+        <a href="donors.html" class="btn btn-primary btn-lg">🩸 Find Donor Now</a>
+        <a href="register.html" class="btn btn-outline btn-lg">Become a Donor</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-num counter" data-target="12400">0</span>
+          <span class="hero-stat-label">Lives Saved</span>
+        </div>
+        <div class="hero-stat-divider" aria-hidden="true"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-num counter" data-target="8500">0</span>
+          <span class="hero-stat-label">Active Donors</span>
+        </div>
+        <div class="hero-stat-divider" aria-hidden="true"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-num counter" data-target="320">0</span>
+          <span class="hero-stat-label">Hospitals</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-illustration reveal-right">
+      <div class="hero-card-float glass-card">
+        <div class="blood-badge blood-badge-lg">O+</div>
+        <div>
+          <p class="font-semibold" style="font-size:0.9rem">Rahul Kumar</p>
+          <p class="text-muted text-sm">Mumbai • Available</p>
+        </div>
+        <span class="badge badge-green">✓ Ready</span>
+      </div>
+      <div class="hero-ring">
+        <div class="hero-ring-inner">
+          <div style="font-size:4rem">🩸</div>
+          <p class="font-bold text-primary" style="font-size:1.1rem">BloodCare</p>
+        </div>
+      </div>
+      <div class="hero-card-float hero-card-float-2 glass-card">
+        <span style="font-size:1.5rem">🚨</span>
+        <div>
+          <p class="font-semibold text-sm" style="color:var(--danger)">Emergency Request</p>
+          <p class="text-muted" style="font-size:0.78rem">B+ needed • AIIMS Delhi</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Scroll indicator -->
+  <div class="scroll-indicator" aria-hidden="true">
+    <div class="scroll-dot"></div>
+  </div>
+</section>
+
+<!-- BLOOD GROUP QUICK SEARCH -->
+<section class="section quick-search-section">
+  <div class="section-header reveal">
+    <span class="section-tag">Smart Search</span>
+    <h2 class="section-title">Find a Donor <span>Instantly</span></h2>
+    <p class="section-sub">Search from thousands of verified donors by blood group, city, and availability.</p>
+  </div>
+  <div class="quick-search-box reveal glass-card">
+    <div class="qsearch-grid">
+      <div class="input-group">
+        <label class="input-label" for="qs-blood">Blood Group</label>
+        <div class="input-with-icon">
+          <span class="input-icon">🩸</span>
+          <select class="input-field" id="qs-blood">
+            <option value="">Any Group</option>
+            <option>A+</option><option>A-</option>
+            <option>B+</option><option>B-</option>
+            <option>AB+</option><option>AB-</option>
+            <option>O+</option><option>O-</option>
+          </select>
+        </div>
+      </div>
+      <div class="input-group">
+        <label class="input-label" for="qs-city">City</label>
+        <div class="input-with-icon">
+          <span class="input-icon">📍</span>
+          <input type="text" class="input-field" id="qs-city" placeholder="Enter your city"/>
+        </div>
+      </div>
+      <div class="input-group">
+        <label class="input-label" for="qs-avail">Availability</label>
+        <div class="input-with-icon">
+          <span class="input-icon">✅</span>
+          <select class="input-field" id="qs-avail">
+            <option value="">Any</option>
+            <option>Available Now</option>
+            <option>Within 24hrs</option>
+          </select>
+        </div>
+      </div>
+      <a href="donors.html" class="btn btn-primary qsearch-btn" id="qsearchBtn" style="height:50px;align-self:flex-end;">
+        🔍 Search Donors
+      </a>
+    </div>
+    <div class="qsearch-chips" role="group" aria-label="Quick blood group filter">
+      <span class="chip active" data-bg="O+">O+</span>
+      <span class="chip" data-bg="O-">O-</span>
+      <span class="chip" data-bg="A+">A+</span>
+      <span class="chip" data-bg="A-">A-</span>
+      <span class="chip" data-bg="B+">B+</span>
+      <span class="chip" data-bg="B-">B-</span>
+      <span class="chip" data-bg="AB+">AB+</span>
+      <span class="chip" data-bg="AB-">AB-</span>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT STATS -->
+<section class="section section-alt stats-section" id="impact">
+  <div class="section-header reveal">
+    <span class="section-tag">Our Impact</span>
+    <h2 class="section-title">Numbers That <span>Matter</span></h2>
+  </div>
+  <div class="grid grid-4 reveal">
+    <div class="stat-card neu-card">
+      <div class="stat-icon">❤️</div>
+      <h3 class="counter stat-num" data-target="12400">0</h3>
+      <p class="stat-label">Lives Saved</p>
+      <div class="progress-bar"><div class="progress-fill" style="width:82%"></div></div>
+    </div>
+    <div class="stat-card neu-card">
+      <div class="stat-icon">👤</div>
+      <h3 class="counter stat-num" data-target="8500">0</h3>
+      <p class="stat-label">Active Donors</p>
+      <div class="progress-bar"><div class="progress-fill" style="width:70%"></div></div>
+    </div>
+    <div class="stat-card neu-card">
+      <div class="stat-icon">🏥</div>
+      <h3 class="counter stat-num" data-target="320">0</h3>
+      <p class="stat-label">Hospitals Connected</p>
+      <div class="progress-bar"><div class="progress-fill" style="width:55%"></div></div>
+    </div>
+    <div class="stat-card neu-card">
+      <div class="stat-icon">📅</div>
+      <h3 class="counter stat-num" data-target="45000">0</h3>
+      <p class="stat-label">Total Donations</p>
+      <div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EMERGENCY REQUESTS -->
+<section class="section" id="emergency-home">
+  <div class="section-header reveal">
+    <span class="section-tag" style="background:rgba(230,57,70,0.15);color:var(--danger)">🚨 Emergency</span>
+    <h2 class="section-title">Active Emergency <span>Requests</span></h2>
+    <p class="section-sub">Critical patients need blood right now. Respond immediately and save a life.</p>
+  </div>
+  <div class="grid grid-3 reveal" id="emergencyList">
+    <!-- Injected by JS -->
+  </div>
+  <div class="text-center" style="margin-top:40px">
+    <a href="emergency.html" class="btn btn-outline">View All Emergency Requests →</a>
+  </div>
+</section>
+
+<!-- FEATURED DONORS -->
+<section class="section section-alt" id="donors-home">
+  <div class="section-header reveal">
+    <span class="section-tag">Top Donors</span>
+    <h2 class="section-title">Our <span>Heroes</span></h2>
+    <p class="section-sub">Meet the incredible people saving lives in your community.</p>
+  </div>
+  <div class="grid grid-auto reveal" id="featuredDonors"></div>
+  <div class="text-center" style="margin-top:40px">
+    <a href="donors.html" class="btn btn-primary">Explore All Donors →</a>
+  </div>
+</section>
+
+<!-- HOSPITALS PREVIEW -->
+<section class="section" id="hospitals-home">
+  <div class="section-header reveal">
+    <span class="section-tag">Blood Banks</span>
+    <h2 class="section-title">Nearby <span>Hospitals</span></h2>
+    <p class="section-sub">Find blood banks and hospitals with real-time blood availability.</p>
+  </div>
+  <div class="grid grid-3 reveal" id="hospitalList"></div>
+  <div class="text-center" style="margin-top:40px">
+    <a href="hospitals.html" class="btn btn-outline">View All Hospitals →</a>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section class="section section-alt" id="achievements-home">
+  <div class="section-header reveal">
+    <span class="section-tag">Gamification</span>
+    <h2 class="section-title">Earn <span>Badges</span></h2>
+    <p class="section-sub">Every donation earns you recognition. Unlock badges, climb the leaderboard.</p>
+  </div>
+  <div class="grid grid-4 reveal">
+    <div class="achievement-card glass-card text-center">
+      <div class="achievement-icon">🥇</div>
+      <h3 class="font-bold" style="margin:12px 0 6px">Life Saver</h3>
+      <p class="text-muted text-sm">Donated 10+ times</p>
+      <div class="progress-bar" style="margin-top:14px"><div class="progress-fill" style="width:100%"></div></div>
+    </div>
+    <div class="achievement-card glass-card text-center">
+      <div class="achievement-icon">🏆</div>
+      <h3 class="font-bold" style="margin:12px 0 6px">Champion</h3>
+      <p class="text-muted text-sm">Donated 25+ times</p>
+      <div class="progress-bar" style="margin-top:14px"><div class="progress-fill" style="width:65%"></div></div>
+    </div>
+    <div class="achievement-card glass-card text-center">
+      <div class="achievement-icon">⭐</div>
+      <h3 class="font-bold" style="margin:12px 0 6px">Star Donor</h3>
+      <p class="text-muted text-sm">5-star community rating</p>
+      <div class="progress-bar" style="margin-top:14px"><div class="progress-fill" style="width:80%"></div></div>
+    </div>
+    <div class="achievement-card glass-card text-center">
+      <div class="achievement-icon">🚀</div>
+      <h3 class="font-bold" style="margin:12px 0 6px">First Responder</h3>
+      <p class="text-muted text-sm">Responded to emergency</p>
+      <div class="progress-bar" style="margin-top:14px"><div class="progress-fill" style="width:45%"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION PREVIEW -->
+<section class="section" id="education-home">
+  <div class="section-header reveal">
+    <span class="section-tag">Education</span>
+    <h2 class="section-title">Blood Compatibility <span>Guide</span></h2>
+    <p class="section-sub">Understand who can donate to whom. Knowledge saves lives.</p>
+  </div>
+  <div class="compat-table-wrap reveal">
+    <div class="table-container">
+      <table class="compat-table" aria-label="Blood compatibility chart">
+        <thead>
+          <tr><th>Blood Group</th><th>Can Donate To</th><th>Can Receive From</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="blood-badge" style="width:36px;height:36px;font-size:0.78rem;display:inline-flex">O-</span></td><td>Everyone 🌍</td><td>O-</td></tr>
+          <tr><td><span class="blood-badge" style="width:36px;height:36px;font-size:0.78rem;display:inline-flex">O+</span></td><td>O+, A+, B+, AB+</td><td>O+, O-</td></tr>
+          <tr><td><span class="blood-badge" style="width:36px;height:36px;font-size:0.78rem;display:inline-flex">A-</span></td><td>A-, A+, AB-, AB+</td><td>A-, O-</td></tr>
+          <tr><td><span class="blood-badge" style="width:36px;height:36px;font-size:0.78rem;display:inline-flex">A+</span></td><td>A+, AB+</td><td>A+, A-, O+, O-</td></tr>
+          <tr><td><span class="blood-badge" style="width:36px;height:36px;font-size:0.78rem;display:inline-flex">B-</span></td><td>B-, B+, AB-, AB+</td><td>B-, O-</td></tr>
+          <tr><td><span class="blood-badge" style="width:36px;height:36px;font-size:0.78rem;display:inline-flex">B+</span></td><td>B+, AB+</td><td>B+, B-, O+, O-</td></tr>
+          <tr><td><span class="blood-badge" style="width:36px;height:36px;font-size:0.78rem;display:inline-flex">AB-</span></td><td>AB-, AB+</td><td>AB-, A-, B-, O-</td></tr>
+          <tr><td><span class="blood-badge" style="width:36px;height:36px;font-size:0.78rem;display:inline-flex">AB+</span></td><td>AB+ only</td><td>Receives From All 🌍</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="text-center" style="margin-top:40px">
+    <a href="education.html" class="btn btn-outline">Full Education Center →</a>
+  </div>
+</section>
+
+<!-- COMMUNITY PREVIEW -->
+<section class="section section-alt" id="community-home">
+  <div class="section-header reveal">
+    <span class="section-tag">Community</span>
+    <h2 class="section-title">Join the <span>Movement</span></h2>
+    <p class="section-sub">Share stories, join campaigns, and inspire others to donate blood.</p>
+  </div>
+  <div class="grid grid-3 reveal">
+    <div class="story-card glass-card">
+      <div class="story-header">
+        <div class="avatar avatar-md">RK</div>
+        <div>
+          <p class="font-semibold">Rahul Kumar</p>
+          <p class="text-muted text-sm">15 donations · Mumbai</p>
+        </div>
+        <span class="badge badge-green ml-auto">Hero</span>
+      </div>
+      <p class="story-text">"I've been donating blood for 5 years. The feeling of knowing I've saved lives is indescribable. Join BloodCare today!"</p>
+      <div class="story-footer">
+        <button class="btn-glass btn btn-sm">❤️ 142</button>
+        <button class="btn-glass btn btn-sm">💬 28</button>
+      </div>
+    </div>
+    <div class="story-card glass-card">
+      <div class="story-header">
+        <div class="avatar avatar-md" style="background:linear-gradient(135deg,#667eea,#764ba2)">PA</div>
+        <div>
+          <p class="font-semibold">Priya Anand</p>
+          <p class="text-muted text-sm">8 donations · Delhi</p>
+        </div>
+        <span class="badge badge-blue ml-auto">Active</span>
+      </div>
+      <p class="story-text">"My father needed AB- blood urgently. BloodCare connected us to a donor in under 10 minutes. This platform saved his life."</p>
+      <div class="story-footer">
+        <button class="btn-glass btn btn-sm">❤️ 98</button>
+        <button class="btn-glass btn btn-sm">💬 14</button>
+      </div>
+    </div>
+    <div class="story-card glass-card">
+      <div class="story-header">
+        <div class="avatar avatar-md" style="background:linear-gradient(135deg,#f093fb,#f5576c)">AS</div>
+        <div>
+          <p class="font-semibold">Arjun Sharma</p>
+          <p class="text-muted text-sm">22 donations · Bangalore</p>
+        </div>
+        <span class="badge badge-red ml-auto">Champion</span>
+      </div>
+      <p class="story-text">"Being a regular donor is the most fulfilling thing I do. BloodCare makes it effortless to track my impact and stay connected."</p>
+      <div class="story-footer">
+        <button class="btn-glass btn btn-sm">❤️ 201</button>
+        <button class="btn-glass btn btn-sm">💬 45</button>
+      </div>
+    </div>
+  </div>
+  <div class="text-center" style="margin-top:40px">
+    <a href="community.html" class="btn btn-primary">Join Our Community →</a>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="section cta-section">
+  <div class="cta-content reveal glass-card text-center">
+    <div class="cta-icon" aria-hidden="true">🩸</div>
+    <h2 class="section-title" style="margin-bottom:16px">Ready to <span>Save Lives?</span></h2>
+    <p class="section-sub" style="margin-bottom:32px">Register as a donor today. Your single donation can save up to 3 lives. It takes only 30 minutes.</p>
+    <div class="flex-center gap-16 flex-wrap">
+      <a href="register.html" class="btn btn-primary btn-lg">Register as Donor</a>
+      <a href="donors.html" class="btn btn-glass btn-lg">Find a Donor</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="navbar-brand" style="font-size:1.4rem;margin-bottom:12px">
+        <div class="brand-icon" style="width:32px;height:32px;font-size:1rem">❤️</div> BloodCare
+      </div>
+      <p class="text-muted text-sm" style="max-width:260px;line-height:1.7">India's most trusted blood donor platform. Connecting donors with patients since 2020.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Platform</h4>
+      <a href="donors.html">Find Donors</a>
+      <a href="hospitals.html">Hospitals</a>
+      <a href="emergency.html">Emergency</a>
+      <a href="register.html">Register</a>
+    </div>
+    <div class="footer-links">
+      <h4>Community</h4>
+      <a href="community.html">Stories</a>
+      <a href="education.html">Learn</a>
+      <a href="education.html#faq">FAQ</a>
+    </div>
+    <div class="footer-links">
+      <h4>Connect</h4>
+      <a href="contact.html">Contact Us</a>
+      <a href="#">Twitter</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="text-muted text-sm">© 2025 BloodCare. Made with ❤️ to save lives.</p>
+  </div>
+</footer>
+
+<!-- BOTTOM NAV (Mobile) -->
+<nav class="bottom-nav" aria-label="Mobile navigation">
+  <a href="index.html" class="bottom-nav-item active"><span class="icon">🏠</span>Home</a>
+  <a href="donors.html" class="bottom-nav-item"><span class="icon">🩸</span>Donors</a>
+  <a href="emergency.html" class="bottom-nav-item"><span class="icon">🚨</span>Emergency</a>
+  <a href="hospitals.html" class="bottom-nav-item"><span class="icon">🏥</span>Hospitals</a>
+  <a href="community.html" class="bottom-nav-item"><span class="icon">👥</span>Community</a>
+</nav>
+
+<!-- DONOR PROFILE MODAL -->
+<div class="modal-overlay" id="donorModal" role="dialog" aria-modal="true" aria-labelledby="modalDonorName">
+  <div class="modal" id="donorModalContent">
+    <button class="modal-close" id="closeDonorModal" aria-label="Close modal">✕</button>
+    <div class="modal-header">
+      <div class="flex gap-16 align-items-center">
+        <div class="avatar avatar-xl" id="modalAvatar"></div>
+        <div>
+          <h2 id="modalDonorName" style="font-size:1.4rem;font-weight:800"></h2>
+          <div class="flex gap-8 align-items-center" style="margin-top:6px">
+            <span class="status-dot available" id="modalStatus"></span>
+            <span id="modalStatusText" class="text-muted text-sm"></span>
+          </div>
+        </div>
+        <div class="blood-badge blood-badge-lg" id="modalBloodGroup" style="margin-left:auto"></div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="grid grid-2" style="gap:16px;margin-bottom:20px">
+        <div class="modal-info-card">
+          <p class="text-muted text-sm">Age</p>
+          <p class="font-semibold" id="modalAge"></p>
+        </div>
+        <div class="modal-info-card">
+          <p class="text-muted text-sm">City</p>
+          <p class="font-semibold" id="modalCity"></p>
+        </div>
+        <div class="modal-info-card">
+          <p class="text-muted text-sm">Total Donations</p>
+          <p class="font-semibold text-primary" id="modalDonations"></p>
+        </div>
+        <div class="modal-info-card">
+          <p class="text-muted text-sm">Last Donation</p>
+          <p class="font-semibold" id="modalLastDonation"></p>
+        </div>
+      </div>
+      <div class="modal-badges" id="modalBadges" style="margin-bottom:20px"></div>
+      <div id="modalContact" style="background:var(--surface-2);border-radius:var(--radius);padding:16px"></div>
+    </div>
+    <div class="modal-footer">
+      <a id="modalCallBtn" href="#" class="btn btn-primary w-full">📞 Contact Donor</a>
+    </div>
+  </div>
+</div>
+
+<!-- AI CHATBOT -->
+<button id="ai-chat-btn" aria-label="Open AI Blood Assistant" title="AI Blood Assistant">🤖</button>
+<div class="chatbot-panel" id="chatPanel" role="dialog" aria-label="AI Blood Assistant">
+  <div class="chat-header">
+    <div class="avatar avatar-sm" style="background:#fff;color:var(--primary)">🤖</div>
+    <div>
+      <p class="font-semibold" style="font-size:0.9rem">BloodCare AI</p>
+      <p style="font-size:0.75rem;opacity:0.8">Always here to help</p>
+    </div>
+    <button style="margin-left:auto;color:#fff;font-size:1.1rem" id="closeChat" aria-label="Close chat">✕</button>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="chat-msg bot">Hi! 👋 I'm your BloodCare AI assistant. I can help you find donors, check blood compatibility, or learn about donation. How can I help?</div>
+  </div>
+  <div class="chat-input-row">
+    <input type="text" id="chatInput" placeholder="Ask me anything…" aria-label="Chat message"/>
+    <button class="chat-send" id="chatSend" aria-label="Send message">➤</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+<script src="js/data.js?v=2"></script>
+<script src="js/main.js?v=2"></script>
+<script src="js/home.js?v=2"></script>
+</body>
+</html>

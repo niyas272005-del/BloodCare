@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Join the BloodCare community. Share stories, join campaigns, inspire others."/>
+<title>Community – BloodCare</title>
+<link rel="stylesheet" href="css/style.css?v=2"/>
+<style>
+.page-header{background:linear-gradient(135deg,#0a0514,#14051a);padding:calc(var(--nav-h)+50px) 5% 60px;text-align:center;}
+.page-header .section-title,.page-header .section-sub{color:#fff;}
+.community-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px;border-bottom:2px solid var(--border);padding-bottom:0;}
+.comm-tab{padding:12px 24px;font-weight:600;font-size:0.9rem;color:var(--text-2);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all var(--transition);}
+.comm-tab.active{color:var(--primary);border-bottom-color:var(--primary);}
+.comm-tab:hover{color:var(--primary);}
+.tab-content{display:none;} .tab-content.active{display:block;}
+.story-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--glass-shadow);transition:all var(--transition);}
+.story-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,0.12);}
+.story-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.story-text{font-size:0.92rem;color:var(--text-2);line-height:1.7;margin-bottom:16px;font-style:italic;}
+.story-footer{display:flex;gap:10px;}
+.campaign-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--glass-shadow);transition:all var(--transition);}
+.campaign-card:hover{transform:translateY(-4px);}
+.campaign-banner{height:120px;display:flex;align-items:center;justify-content:center;font-size:3rem;background:linear-gradient(135deg,rgba(230,57,70,0.15),rgba(193,18,31,0.1));}
+.campaign-body{padding:20px;}
+.campaign-title{font-weight:700;margin-bottom:8px;}
+.campaign-desc{font-size:0.88rem;color:var(--text-2);margin-bottom:16px;line-height:1.6;}
+.campaign-progress{margin-bottom:12px;}
+.campaign-progress-info{display:flex;justify-content:space-between;font-size:0.82rem;color:var(--text-2);margin-bottom:6px;}
+.leaderboard-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--glass-shadow);}
+.leaderboard-header{background:linear-gradient(135deg,var(--primary),var(--primary-dark));padding:20px 24px;color:#fff;}
+.leaderboard-row{display:flex;align-items:center;gap:16px;padding:16px 24px;border-bottom:1px solid var(--border);transition:background var(--transition);}
+.leaderboard-row:last-child{border-bottom:none;}
+.leaderboard-row:hover{background:var(--surface-2);}
+.rank-num{width:32px;height:32px;border-radius:50%;background:var(--surface-2);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;}
+.rank-1{background:linear-gradient(135deg,#FFD700,#FFA500);color:#fff;}
+.rank-2{background:linear-gradient(135deg,#C0C0C0,#A8A8A8);color:#fff;}
+.rank-3{background:linear-gradient(135deg,#CD7F32,#A0522D);color:#fff;}
+.achievement-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;}
+.ach-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;text-align:center;box-shadow:var(--glass-shadow);transition:all var(--transition);}
+.ach-card:hover{transform:translateY(-4px);border-color:var(--primary);}
+.ach-icon{font-size:2.5rem;margin-bottom:12px;}
+.ach-title{font-weight:700;margin-bottom:4px;}
+.ach-desc{font-size:0.82rem;color:var(--text-2);}
+.featured-donor{background:linear-gradient(135deg,rgba(230,57,70,0.1),rgba(193,18,31,0.05));border:1px solid rgba(230,57,70,0.2);border-radius:var(--radius-xl);padding:36px;text-align:center;}
+.featured-donor .avatar{margin:0 auto 16px;}
+.post-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;margin-bottom:24px;}
+.post-box textarea{width:100%;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:14px;resize:none;font-family:inherit;font-size:0.95rem;color:var(--text);background:var(--surface-2);outline:none;margin-bottom:12px;}
+.post-box textarea:focus{border-color:var(--primary);}
+.post-actions{display:flex;justify-content:flex-end;gap:10px;}
+@media(max-width:768px){.community-tabs{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px;}}
+</style>
+</head>
+<body>
+<div id="loader"><div class="loader-heart"></div><p class="loader-text">BloodCare</p></div>
+<nav class="navbar">
+  <a href="index.html" class="navbar-brand"><div class="brand-icon">❤️</div>BloodCare</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li><li><a href="donors.html">Donors</a></li>
+    <li><a href="hospitals.html">Hospitals</a></li><li><a href="community.html" class="active">Community</a></li>
+    <li><a href="emergency.html">Emergency</a></li><li><a href="education.html">Learn</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn-icon" id="themeToggle">🌙</button>
+    <a href="register.html" class="btn btn-primary btn-sm">Become Donor</a>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">🏠 Home</a><a href="donors.html">🩸 Donors</a>
+  <a href="hospitals.html">🏥 Hospitals</a><a href="community.html" class="active">👥 Community</a>
+  <a href="emergency.html">🚨 Emergency</a><a href="education.html">📚 Learn</a>
+</div>
+
+<div class="page-header">
+  <div class="reveal">
+    <span class="section-tag">Community</span>
+    <h1 class="section-title">Join the <span>Movement</span></h1>
+    <p class="section-sub">Connect with donors, share your story, and inspire thousands to save lives.</p>
+  </div>
+</div>
+
+<section class="section" style="padding-top:50px">
+  <div class="community-tabs">
+    <div class="comm-tab active" data-tab="stories">💬 Stories</div>
+    <div class="comm-tab" data-tab="campaigns">🎯 Campaigns</div>
+    <div class="comm-tab" data-tab="leaderboard">🏆 Leaderboard</div>
+    <div class="comm-tab" data-tab="achievements">🎖️ Achievements</div>
+  </div>
+
+  <!-- STORIES -->
+  <div class="tab-content active" id="tab-stories">
+    <div class="post-box reveal">
+      <textarea rows="3" placeholder="Share your blood donation story and inspire others… 🩸"></textarea>
+      <div class="post-actions">
+        <button class="btn btn-glass btn-sm">📷 Add Photo</button>
+        <button class="btn btn-primary btn-sm" id="postStoryBtn">📤 Share Story</button>
+      </div>
+    </div>
+    <div class="grid grid-3 reveal" id="storiesGrid"></div>
+  </div>
+
+  <!-- CAMPAIGNS -->
+  <div class="tab-content" id="tab-campaigns">
+    <div class="grid grid-3 reveal" id="campaignsGrid"></div>
+  </div>
+
+  <!-- LEADERBOARD -->
+  <div class="tab-content" id="tab-leaderboard">
+    <div class="grid grid-2 reveal" style="gap:32px">
+      <div class="leaderboard-card">
+        <div class="leaderboard-header">
+          <h3 style="font-size:1.1rem;font-weight:700">🏆 Top Donors This Month</h3>
+          <p style="font-size:0.82rem;opacity:0.8;margin-top:4px">Ranked by total donations</p>
+        </div>
+        <div id="leaderboardList"></div>
+      </div>
+      <div class="featured-donor glass-card">
+        <div style="font-size:1.2rem;font-weight:700;color:var(--primary);margin-bottom:20px">⭐ Featured Donor</div>
+        <div class="avatar avatar-xl" style="background:linear-gradient(135deg,#e63946,#c1121f)">VS</div>
+        <h3 style="margin:16px 0 4px;font-size:1.3rem">Vikram Singh</h3>
+        <p class="text-muted text-sm" style="margin-bottom:16px">📍 Hyderabad &bull; O-</p>
+        <div class="flex-center gap-8" style="margin-bottom:16px;flex-wrap:wrap">
+          <span class="badge badge-red">👑 Legend</span>
+          <span class="badge badge-green">✓ Available</span>
+        </div>
+        <p class="text-muted text-sm" style="margin-bottom:20px;line-height:1.6">"30 donations and counting. Every drop saves a life. This is my superpower and I'm proud of it."</p>
+        <div class="grid grid-3" style="gap:12px;margin-bottom:20px">
+          <div style="text-align:center;background:var(--surface-2);border-radius:var(--radius-sm);padding:12px">
+            <div class="font-bold text-primary" style="font-size:1.3rem">30</div>
+            <div class="text-muted" style="font-size:0.75rem">Donations</div>
+          </div>
+          <div style="text-align:center;background:var(--surface-2);border-radius:var(--radius-sm);padding:12px">
+            <div class="font-bold text-primary" style="font-size:1.3rem">90</div>
+            <div class="text-muted" style="font-size:0.75rem">Lives Saved</div>
+          </div>
+          <div style="text-align:center;background:var(--surface-2);border-radius:var(--radius-sm);padding:12px">
+            <div class="font-bold text-primary" style="font-size:1.3rem">4.9⭐</div>
+            <div class="text-muted" style="font-size:0.75rem">Rating</div>
+          </div>
+        </div>
+        <button class="btn btn-primary w-full" onclick="openDonorModal(5)">View Full Profile</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACHIEVEMENTS -->
+  <div class="tab-content" id="tab-achievements">
+    <div class="achievement-grid reveal" id="achievementsGrid"></div>
+  </div>
+</section>
+
+<!-- DONOR PROFILE MODAL -->
+<div class="modal-overlay" id="donorModal" role="dialog" aria-modal="true" aria-labelledby="modalDonorName">
+  <div class="modal">
+    <button class="modal-close" id="closeDonorModal">✕</button>
+    <div class="modal-header">
+      <div class="flex gap-16" style="align-items:center">
+        <div class="avatar avatar-xl" id="modalAvatar"></div>
+        <div><h2 id="modalDonorName" style="font-size:1.4rem;font-weight:800"></h2><div class="flex gap-8" style="margin-top:6px;align-items:center"><span class="status-dot" id="modalStatus"></span><span id="modalStatusText" class="text-muted text-sm"></span></div></div>
+        <div class="blood-badge blood-badge-lg" id="modalBloodGroup" style="margin-left:auto"></div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="grid grid-2" style="gap:16px;margin-bottom:20px">
+        <div style="background:var(--surface-2);border-radius:var(--radius-sm);padding:14px 18px;border:1px solid var(--border)"><p class="text-muted text-sm">Age</p><p class="font-semibold" id="modalAge"></p></div>
+        <div style="background:var(--surface-2);border-radius:var(--radius-sm);padding:14px 18px;border:1px solid var(--border)"><p class="text-muted text-sm">City</p><p class="font-semibold" id="modalCity"></p></div>
+        <div style="background:var(--surface-2);border-radius:var(--radius-sm);padding:14px 18px;border:1px solid var(--border)"><p class="text-muted text-sm">Total Donations</p><p class="font-semibold text-primary" id="modalDonations"></p></div>
+        <div style="background:var(--surface-2);border-radius:var(--radius-sm);padding:14px 18px;border:1px solid var(--border)"><p class="text-muted text-sm">Last Donation</p><p class="font-semibold" id="modalLastDonation"></p></div>
+      </div>
+      <div class="modal-badges" id="modalBadges" style="margin-bottom:20px;display:flex;flex-wrap:wrap;gap:8px;"></div>
+      <div id="modalContact" style="background:var(--surface-2);border-radius:var(--radius);padding:16px"></div>
+    </div>
+    <div class="modal-footer"><a id="modalCallBtn" href="#" class="btn btn-primary w-full">📞 Contact Donor</a></div>
+  </div>
+</div>
+
+<nav class="bottom-nav">
+  <a href="index.html" class="bottom-nav-item"><span class="icon">🏠</span>Home</a>
+  <a href="donors.html" class="bottom-nav-item"><span class="icon">🩸</span>Donors</a>
+  <a href="emergency.html" class="bottom-nav-item"><span class="icon">🚨</span>Emergency</a>
+  <a href="hospitals.html" class="bottom-nav-item"><span class="icon">🏥</span>Hospitals</a>
+  <a href="community.html" class="bottom-nav-item active"><span class="icon">👥</span>Community</a>
+</nav>
+<button id="ai-chat-btn" aria-label="AI Assistant">🤖</button>
+<div class="chatbot-panel" id="chatPanel">
+  <div class="chat-header"><div class="avatar avatar-sm" style="background:#fff;color:var(--primary)">🤖</div><div><p class="font-semibold" style="font-size:0.9rem">BloodCare AI</p></div><button style="margin-left:auto;color:#fff" id="closeChat">✕</button></div>
+  <div class="chat-messages" id="chatMessages"><div class="chat-msg bot">Welcome to the community! Share a story or explore campaigns. How can I help?</div></div>
+  <div class="chat-input-row"><input type="text" id="chatInput" placeholder="Ask me anything…"/><button class="chat-send" id="chatSend">➤</button></div>
+</div>
+<div class="toast-container" id="toastContainer" aria-live="polite"></div>
+<script src="js/data.js?v=2"></script>
+<script src="js/main.js?v=2"></script>
+<script>
+'use strict';
+document.addEventListener('DOMContentLoaded',()=>{
+  // Tabs
+  document.querySelectorAll('.comm-tab').forEach(tab=>{
+    tab.addEventListener('click',()=>{
+      document.querySelectorAll('.comm-tab').forEach(t=>t.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('tab-'+tab.dataset.tab).classList.add('active');
+    });
+  });
+  // Stories
+  const colors=['#667eea','#764ba2','#f093fb','#f5576c','#4facfe','#43e97b'];
+  document.getElementById('storiesGrid').innerHTML=BC_STORIES.map((s,i)=>`
+    <div class="story-card">
+      <div class="story-header">
+        <div class="avatar avatar-md" style="background:linear-gradient(135deg,${colors[i%colors.length]},${colors[(i+1)%colors.length]})">${s.initials}</div>
+        <div><p class="font-semibold">${s.author}</p><p class="text-muted text-sm">${s.donations} donations &bull; ${s.city}</p></div>
+        <span class="badge badge-${s.badge==='Hero'?'green':s.badge==='Champion'?'red':'blue'}" style="margin-left:auto">${s.badge}</span>
+      </div>
+      <p class="story-text">${s.text}</p>
+      <div class="story-footer">
+        <button class="btn btn-glass btn-sm" onclick="likeStory(this,${s.id})">❤️ ${s.likes}</button>
+        <button class="btn btn-glass btn-sm">💬 ${s.comments}</button>
+      </div>
+    </div>`).join('');
+  // Campaigns
+  document.getElementById('campaignsGrid').innerHTML=BC_CAMPAIGNS.map(c=>{
+    const pct=Math.round((c.collected/c.goal)*100);
+    return `<div class="campaign-card">
+      <div class="campaign-banner">${c.icon}</div>
+      <div class="campaign-body">
+        <div class="campaign-title">${c.title}</div>
+        <div class="campaign-desc">${c.description}</div>
+        <div class="campaign-progress">
+          <div class="campaign-progress-info"><span>${c.collected.toLocaleString()} units</span><span>${pct}%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+          <p class="text-muted text-sm" style="margin-top:6px">Goal: ${c.goal.toLocaleString()} units &bull; ${c.date}</p>
+        </div>
+        <button class="btn btn-primary w-full btn-sm" onclick="showToast('You joined the campaign! 🎉','success')">Join Campaign</button>
+      </div>
+    </div>`;}).join('');
+  // Leaderboard
+  document.getElementById('leaderboardList').innerHTML=BC_LEADERBOARD.map(l=>`
+    <div class="leaderboard-row">
+      <div class="rank-num rank-${l.rank}">${l.rank<=3?['🥇','🥈','🥉'][l.rank-1]:l.rank}</div>
+      <div class="avatar avatar-sm" style="background:linear-gradient(135deg,#e63946,#c1121f)">${l.initials}</div>
+      <div style="flex:1"><p class="font-semibold" style="font-size:0.9rem">${l.name}</p><p class="text-muted" style="font-size:0.78rem">${l.city} &bull; ${l.blood}</p></div>
+      <div style="text-align:right"><p class="font-bold text-primary">${l.donations}</p><p class="text-muted" style="font-size:0.75rem">donations</p></div>
+    </div>`).join('');
+  // Achievements
+  document.getElementById('achievementsGrid').innerHTML=BC_ACHIEVEMENTS.map(a=>`
+    <div class="ach-card">
+      <div class="ach-icon">${a.icon}</div>
+      <div class="ach-title">${a.title}</div>
+      <div class="ach-desc">${a.desc}</div>
+      ${a.req?`<div class="progress-bar" style="margin-top:12px"><div class="progress-fill" style="width:${Math.min(100,Math.round(Math.random()*100))}%"></div></div>`:''}
+    </div>`).join('');
+  // Post story
+  document.getElementById('postStoryBtn')?.addEventListener('click',()=>showToast('Story shared! Thank you for inspiring others 🌟','success'));
+  document.getElementById('closeDonorModal')?.addEventListener('click',()=>closeModal('donorModal'));
+});
+function likeStory(btn,id){btn.innerHTML='❤️ '+(parseInt(btn.textContent.match(/\d+/)[0])+1);showToast('You liked this story! ❤️','success',2000);}
+window.likeStory=likeStory;
+</script>
+</body>
+</html>

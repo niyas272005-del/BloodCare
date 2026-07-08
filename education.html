@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Learn about blood donation eligibility, compatibility, process, and FAQs."/>
+<title>Education Center – BloodCare</title>
+<link rel="stylesheet" href="css/style.css?v=2"/>
+<style>
+.page-header{background:linear-gradient(135deg,#050a1a,#0a1428);padding:calc(var(--nav-h)+50px) 5% 60px;text-align:center;}
+.page-header .section-title,.page-header .section-sub{color:#fff;}
+.edu-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px;border-bottom:2px solid var(--border);}
+.edu-tab{padding:12px 24px;font-weight:600;font-size:0.9rem;color:var(--text-2);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all var(--transition);}
+.edu-tab.active{color:var(--primary);border-bottom-color:var(--primary);}
+.tab-content{display:none;}.tab-content.active{display:block;}
+.compat-table{width:100%;border-collapse:collapse;background:var(--surface);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--glass-shadow);}
+.compat-table th{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;padding:16px 20px;text-align:left;font-weight:700;}
+.compat-table td{padding:14px 20px;border-bottom:1px solid var(--border);font-size:0.9rem;color:var(--text-2);}
+.compat-table td:first-child{font-weight:700;color:var(--text);}
+.compat-table tr:last-child td{border-bottom:none;}
+.compat-table tr:hover td{background:rgba(230,57,70,0.04);}
+.eligibility-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;}
+.elig-item{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;font-size:0.9rem;font-weight:500;}
+.elig-item.ok{border-left:4px solid var(--success);}
+.elig-item.no{border-left:4px solid var(--danger);}
+.timeline{position:relative;padding-left:40px;}
+.timeline::before{content:'';position:absolute;left:16px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--primary),var(--accent));}
+.timeline-step{position:relative;margin-bottom:36px;}
+.timeline-dot{position:absolute;left:-32px;top:4px;width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;box-shadow:0 4px 12px var(--primary-glow);}
+.timeline-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--glass-shadow);}
+.timeline-card h4{font-weight:700;margin-bottom:6px;}
+.timeline-card p{font-size:0.88rem;color:var(--text-2);line-height:1.6;}
+.faq-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:12px;}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;cursor:pointer;font-weight:600;transition:all var(--transition);}
+.faq-q:hover{background:var(--surface-2);}
+.faq-icon{transition:transform 0.3s;color:var(--primary);font-size:1.2rem;}
+.faq-a{padding:0 20px;max-height:0;overflow:hidden;transition:all 0.4s ease;color:var(--text-2);font-size:0.9rem;line-height:1.7;}
+.faq-item.open .faq-a{max-height:200px;padding:0 20px 18px;}
+.faq-item.open .faq-icon{transform:rotate(45deg);}
+.tips-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;}
+.tip-card{display:flex;align-items:flex-start;gap:16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--glass-shadow);transition:all var(--transition);}
+.tip-card:hover{transform:translateY(-4px);border-color:var(--primary);}
+.tip-icon{font-size:2rem;flex-shrink:0;}
+.tip-text{font-size:0.9rem;color:var(--text-2);line-height:1.6;}
+.blood-selector{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px;}
+.blood-sel-btn{width:60px;height:60px;border-radius:50%;background:var(--surface-2);border:2px solid var(--border);font-weight:800;font-size:0.85rem;cursor:pointer;transition:all var(--transition);}
+.blood-sel-btn.active,.blood-sel-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary);transform:scale(1.1);}
+.compat-result{background:var(--surface);border-radius:var(--radius-lg);padding:28px;border:1px solid var(--border);margin-top:20px;}
+.compat-result h4{margin-bottom:16px;font-size:1.1rem;}
+.compat-row{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+</style>
+</head>
+<body>
+<div id="loader"><div class="loader-heart"></div><p class="loader-text">BloodCare</p></div>
+<nav class="navbar">
+  <a href="index.html" class="navbar-brand"><div class="brand-icon">❤️</div>BloodCare</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li><li><a href="donors.html">Donors</a></li>
+    <li><a href="hospitals.html">Hospitals</a></li><li><a href="community.html">Community</a></li>
+    <li><a href="emergency.html">Emergency</a></li><li><a href="education.html" class="active">Learn</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn-icon" id="themeToggle">🌙</button>
+    <a href="register.html" class="btn btn-primary btn-sm">Become Donor</a>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">🏠 Home</a><a href="donors.html">🩸 Donors</a>
+  <a href="hospitals.html">🏥 Hospitals</a><a href="community.html">👥 Community</a>
+  <a href="emergency.html">🚨 Emergency</a><a href="education.html" class="active">📚 Learn</a>
+</div>
+
+<div class="page-header">
+  <div class="reveal">
+    <span class="section-tag">Education Center</span>
+    <h1 class="section-title">Learn About <span>Blood Donation</span></h1>
+    <p class="section-sub">Everything you need to know — compatibility, eligibility, process, and more.</p>
+  </div>
+</div>
+
+<section class="section" style="padding-top:50px">
+  <div class="edu-tabs">
+    <div class="edu-tab active" data-tab="compatibility">🩸 Compatibility</div>
+    <div class="edu-tab" data-tab="eligibility">✅ Eligibility</div>
+    <div class="edu-tab" data-tab="process">📋 Process</div>
+    <div class="edu-tab" data-tab="faq" id="faq">❓ FAQ</div>
+    <div class="edu-tab" data-tab="tips">💡 Health Tips</div>
+  </div>
+
+  <!-- COMPATIBILITY -->
+  <div class="tab-content active" id="tab-compatibility">
+    <div class="section-header" style="text-align:left;margin-bottom:28px">
+      <h2 class="section-title" style="font-size:1.6rem">Interactive <span>Compatibility Checker</span></h2>
+      <p class="section-sub" style="margin:0;text-align:left">Select your blood group to see who you can donate to and receive from.</p>
+    </div>
+    <div class="blood-selector" id="bloodSelector">
+      <button class="blood-sel-btn" data-bg="O-">O-</button><button class="blood-sel-btn" data-bg="O+">O+</button>
+      <button class="blood-sel-btn" data-bg="A-">A-</button><button class="blood-sel-btn" data-bg="A+">A+</button>
+      <button class="blood-sel-btn" data-bg="B-">B-</button><button class="blood-sel-btn" data-bg="B+">B+</button>
+      <button class="blood-sel-btn" data-bg="AB-">AB-</button><button class="blood-sel-btn" data-bg="AB+">AB+</button>
+    </div>
+    <div class="compat-result" id="compatResult" style="display:none"></div>
+    <div class="table-container" style="margin-top:36px;overflow-x:auto">
+      <table class="compat-table">
+        <thead><tr><th>Blood Group</th><th>Can Donate To</th><th>Can Receive From</th><th>Type</th></tr></thead>
+        <tbody>
+          <tr><td><div class="blood-badge" style="display:inline-flex;width:36px;height:36px;font-size:0.72rem">O-</div></td><td>Everyone 🌍</td><td>O- only</td><td><span class="badge badge-red">Universal Donor</span></td></tr>
+          <tr><td><div class="blood-badge" style="display:inline-flex;width:36px;height:36px;font-size:0.72rem">O+</div></td><td>O+, A+, B+, AB+</td><td>O+, O-</td><td><span class="badge badge-green">Common</span></td></tr>
+          <tr><td><div class="blood-badge" style="display:inline-flex;width:36px;height:36px;font-size:0.72rem">A-</div></td><td>A-, A+, AB-, AB+</td><td>A-, O-</td><td><span class="badge badge-blue">Rare</span></td></tr>
+          <tr><td><div class="blood-badge" style="display:inline-flex;width:36px;height:36px;font-size:0.72rem">A+</div></td><td>A+, AB+</td><td>A+, A-, O+, O-</td><td><span class="badge badge-green">Common</span></td></tr>
+          <tr><td><div class="blood-badge" style="display:inline-flex;width:36px;height:36px;font-size:0.72rem">B-</div></td><td>B-, B+, AB-, AB+</td><td>B-, O-</td><td><span class="badge badge-blue">Rare</span></td></tr>
+          <tr><td><div class="blood-badge" style="display:inline-flex;width:36px;height:36px;font-size:0.72rem">B+</div></td><td>B+, AB+</td><td>B+, B-, O+, O-</td><td><span class="badge badge-green">Common</span></td></tr>
+          <tr><td><div class="blood-badge" style="display:inline-flex;width:36px;height:36px;font-size:0.72rem">AB-</div></td><td>AB-, AB+</td><td>AB-, A-, B-, O-</td><td><span class="badge badge-orange">Rare</span></td></tr>
+          <tr><td><div class="blood-badge" style="display:inline-flex;width:36px;height:36px;font-size:0.72rem">AB+</div></td><td>AB+ only</td><td>Receives From All 🌍</td><td><span class="badge badge-blue">Universal Recipient</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ELIGIBILITY -->
+  <div class="tab-content" id="tab-eligibility">
+    <div class="section-header" style="text-align:left;margin-bottom:28px">
+      <h2 class="section-title" style="font-size:1.6rem">Donation <span>Eligibility</span></h2>
+    </div>
+    <div class="eligibility-grid" id="eligibilityGrid"></div>
+    <div class="glass-card" style="padding:28px;margin-top:32px;background:rgba(230,57,70,0.06)">
+      <h3 style="margin-bottom:16px">⚠️ Important Notes</h3>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:10px">
+        <li class="text-muted" style="font-size:0.9rem">• Always consult with medical staff at the donation center for your specific situation.</li>
+        <li class="text-muted" style="font-size:0.9rem">• Certain medications may temporarily disqualify you — inform the staff of any drugs you are taking.</li>
+        <li class="text-muted" style="font-size:0.9rem">• Travelers to malaria-endemic regions must wait 12 months before donating.</li>
+        <li class="text-muted" style="font-size:0.9rem">• Hemoglobin level is checked before every donation to ensure donor safety.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PROCESS -->
+  <div class="tab-content" id="tab-process">
+    <div class="section-header" style="text-align:left;margin-bottom:28px">
+      <h2 class="section-title" style="font-size:1.6rem">Donation <span>Process</span></h2>
+      <p class="section-sub" style="margin:0;text-align:left">From registration to recovery — here's everything that happens during a blood donation.</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-step"><div class="timeline-dot">1</div><div class="timeline-card"><h4>📝 Registration (5 min)</h4><p>Fill a short health questionnaire. Provide ID and consent. First-time donors register their profile in the system.</p></div></div>
+      <div class="timeline-step"><div class="timeline-dot">2</div><div class="timeline-card"><h4>🩺 Health Check (5 min)</h4><p>A nurse checks your blood pressure, pulse, temperature, and hemoglobin level. This ensures you are safe to donate.</p></div></div>
+      <div class="timeline-step"><div class="timeline-dot">3</div><div class="timeline-card"><h4>🩸 Blood Drawing (8-10 min)</h4><p>A sterile, single-use needle is inserted. One unit (~450 ml) of blood is collected. The process is virtually painless.</p></div></div>
+      <div class="timeline-step"><div class="timeline-dot">4</div><div class="timeline-card"><h4>🧪 Sample Testing</h4><p>Your blood is tested for blood group, infections (HIV, Hepatitis B/C, Syphilis). Only safe blood is used for transfusion.</p></div></div>
+      <div class="timeline-step"><div class="timeline-dot">5</div><div class="timeline-card"><h4>🍪 Recovery (10-15 min)</h4><p>Rest, have refreshments. Your body naturally replenishes plasma within 24 hours and red cells within a few weeks.</p></div></div>
+      <div class="timeline-step" style="margin-bottom:0"><div class="timeline-dot">✓</div><div class="timeline-card" style="border-color:var(--success)"><h4>🎉 Done! You just saved up to 3 lives.</h4><p>You can donate whole blood again after 3 months. Track your donation history and earn badges on BloodCare.</p></div></div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="tab-content" id="tab-faq">
+    <div class="section-header" style="text-align:left;margin-bottom:28px">
+      <h2 class="section-title" style="font-size:1.6rem">Frequently Asked <span>Questions</span></h2>
+    </div>
+    <div id="faqList"></div>
+  </div>
+
+  <!-- TIPS -->
+  <div class="tab-content" id="tab-tips">
+    <div class="section-header" style="text-align:left;margin-bottom:28px">
+      <h2 class="section-title" style="font-size:1.6rem">Health <span>Tips</span></h2>
+      <p class="section-sub" style="margin:0;text-align:left">Prepare well and recover faster with these expert-recommended tips.</p>
+    </div>
+    <div class="tips-grid" id="tipsGrid"></div>
+  </div>
+</section>
+
+<nav class="bottom-nav">
+  <a href="index.html" class="bottom-nav-item"><span class="icon">🏠</span>Home</a>
+  <a href="donors.html" class="bottom-nav-item"><span class="icon">🩸</span>Donors</a>
+  <a href="emergency.html" class="bottom-nav-item"><span class="icon">🚨</span>Emergency</a>
+  <a href="hospitals.html" class="bottom-nav-item"><span class="icon">🏥</span>Hospitals</a>
+  <a href="community.html" class="bottom-nav-item"><span class="icon">👥</span>Community</a>
+</nav>
+<button id="ai-chat-btn" aria-label="AI Assistant">🤖</button>
+<div class="chatbot-panel" id="chatPanel">
+  <div class="chat-header"><div class="avatar avatar-sm" style="background:#fff;color:var(--primary)">🤖</div><div><p class="font-semibold" style="font-size:0.9rem">BloodCare AI</p></div><button style="margin-left:auto;color:#fff" id="closeChat">✕</button></div>
+  <div class="chat-messages" id="chatMessages"><div class="chat-msg bot">Hi! Ask me anything about blood donation, eligibility, or compatibility!</div></div>
+  <div class="chat-input-row"><input type="text" id="chatInput" placeholder="Ask me anything…"/><button class="chat-send" id="chatSend">➤</button></div>
+</div>
+<div class="toast-container" id="toastContainer" aria-live="polite"></div>
+<script src="js/data.js?v=2"></script>
+<script src="js/main.js?v=2"></script>
+<script>
+'use strict';
+const COMPAT_DATA={
+  'O-':{donate:'Everyone (Universal Donor) 🌍',receive:'O- only'},
+  'O+':{donate:'O+, A+, B+, AB+',receive:'O+, O-'},
+  'A-':{donate:'A-, A+, AB-, AB+',receive:'A-, O-'},
+  'A+':{donate:'A+, AB+',receive:'A+, A-, O+, O-'},
+  'B-':{donate:'B-, B+, AB-, AB+',receive:'B-, O-'},
+  'B+':{donate:'B+, AB+',receive:'B+, B-, O+, O-'},
+  'AB-':{donate:'AB-, AB+',receive:'AB-, A-, B-, O-'},
+  'AB+':{donate:'AB+ only',receive:'Everyone (Universal Recipient) 🌍'},
+};
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.edu-tab').forEach(t=>{
+    t.addEventListener('click',()=>{
+      document.querySelectorAll('.edu-tab').forEach(x=>x.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      document.getElementById('tab-'+t.dataset.tab).classList.add('active');
+    });
+  });
+  document.querySelectorAll('.blood-sel-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.blood-sel-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const bg=btn.dataset.bg, d=COMPAT_DATA[bg];
+      const res=document.getElementById('compatResult');
+      res.style.display='block';
+      res.innerHTML=`<h4>Blood Group <span class="text-primary">${bg}</span></h4>
+        <div class="compat-row"><span style="font-size:1.5rem">➡️</span><div><p class="text-muted text-sm">Can Donate To</p><p class="font-semibold">${d.donate}</p></div></div>
+        <div class="compat-row"><span style="font-size:1.5rem">⬅️</span><div><p class="text-muted text-sm">Can Receive From</p><p class="font-semibold">${d.receive}</p></div></div>
+        <a href="donors.html?blood=${encodeURIComponent(bg)}" class="btn btn-primary btn-sm" style="margin-top:12px">Find ${bg} Donors →</a>`;
+    });
+  });
+  document.getElementById('eligibilityGrid').innerHTML=BC_ELIGIBILITY.map(e=>`
+    <div class="elig-item ${e.ok?'ok':'no'}"><span style="font-size:1.4rem">${e.icon}</span><span>${e.label}</span></div>`).join('');
+  document.getElementById('faqList').innerHTML=BC_FAQS.map((f,i)=>`
+    <div class="faq-item" id="faq-${i}">
+      <div class="faq-q" onclick="toggleFaq(${i})"><span>${f.q}</span><span class="faq-icon">+</span></div>
+      <div class="faq-a">${f.a}</div>
+    </div>`).join('');
+  document.getElementById('tipsGrid').innerHTML=BC_TIPS.map(t=>`
+    <div class="tip-card"><div class="tip-icon">${t.icon}</div><div class="tip-text">${t.tip}</div></div>`).join('');
+  // Check URL hash for FAQ tab
+  if(window.location.hash==='#faq'){document.querySelector('[data-tab="faq"]').click();}
+});
+function toggleFaq(i){const el=document.getElementById('faq-'+i);el.classList.toggle('open');}
+window.toggleFaq=toggleFaq;
+</script>
+</body>
+</html>

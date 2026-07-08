@@ -1,0 +1,39 @@
+/* DONORS PAGE */
+.page-header {
+  background:linear-gradient(135deg,#0d0d1a,#1a0a14);
+  padding:calc(var(--nav-h) + 50px) 5% 60px;
+  text-align:center;
+}
+.page-header .section-title,.page-header .section-sub { color:#fff; }
+.page-header .section-sub strong { color:var(--accent); }
+.search-filter-box { padding:28px; margin-bottom:0; }
+.search-filter-grid {
+  display:flex; flex-wrap:wrap; gap:16px; align-items:flex-end;
+}
+.search-filter-grid .input-group:first-child { flex:2; min-width:200px; }
+.search-filter-grid .input-group { flex:1; min-width:140px; }
+.results-info { margin-bottom:4px; }
+.view-toggle { font-size:1.1rem; }
+.view-toggle.active { background:var(--primary-glow); color:var(--primary); }
+.no-results { text-align:center; padding:80px 20px; }
+.no-results-icon { font-size:4rem; margin-bottom:16px; }
+.no-results h3 { font-size:1.4rem; margin-bottom:8px; }
+.no-results p { margin-bottom:24px; }
+/* list view */
+#donorGrid.list-view { grid-template-columns:1fr; }
+#donorGrid.list-view .donor-card-v2 {
+  display:flex; align-items:center; text-align:left; gap:20px; padding:18px 24px;
+}
+#donorGrid.list-view .dc-avatar-wrap { margin-bottom:0; flex-shrink:0; }
+#donorGrid.list-view .dc-actions { margin-top:0; margin-left:auto; flex-direction:column; gap:8px; }
+#donorGrid.list-view .donor-card-v2::before { top:0; left:0; right:auto; bottom:0; width:4px; height:auto; transform:scaleY(0); transform-origin:top; }
+#donorGrid.list-view .donor-card-v2:hover::before { transform:scaleY(1); }
+.modal-info-card { background:var(--surface-2); border-radius:var(--radius-sm); padding:14px 18px; border:1px solid var(--border); }
+.modal-badges { display:flex; flex-wrap:wrap; gap:8px; }
+.modal-badge-item { display:flex; align-items:center; gap:6px; padding:6px 14px; border-radius:50px; background:var(--surface-2); font-size:0.82rem; font-weight:600; border:1px solid var(--border); }
+@media(max-width:768px) {
+  .search-filter-grid { flex-direction:column; }
+  .search-filter-grid .input-group { min-width:100%; }
+  #donorGrid.list-view .donor-card-v2 { flex-direction:column; text-align:center; }
+  #donorGrid.list-view .dc-actions { margin-left:0; flex-direction:row; }
+}

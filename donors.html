@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Find verified blood donors near you. Filter by blood group, city, and availability."/>
+<title>Find Donors – BloodCare</title>
+<link rel="stylesheet" href="css/style.css?v=2"/>
+<link rel="stylesheet" href="css/donors.css?v=2"/>
+</head>
+<body>
+
+<div id="loader"><div class="loader-heart"></div><p class="loader-text">BloodCare</p></div>
+
+<nav class="navbar">
+  <a href="index.html" class="navbar-brand"><div class="brand-icon">❤️</div>BloodCare</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="donors.html" class="active">Donors</a></li>
+    <li><a href="hospitals.html">Hospitals</a></li>
+    <li><a href="community.html">Community</a></li>
+    <li><a href="emergency.html">Emergency</a></li>
+    <li><a href="education.html">Learn</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn-icon" id="themeToggle" aria-label="Toggle theme">🌙</button>
+    <a href="register.html" class="btn btn-primary btn-sm">Become Donor</a>
+    <button class="hamburger" id="hamburger" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">🏠 Home</a><a href="donors.html" class="active">🩸 Donors</a>
+  <a href="hospitals.html">🏥 Hospitals</a><a href="community.html">👥 Community</a>
+  <a href="emergency.html">🚨 Emergency</a><a href="education.html">📚 Learn</a>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-content reveal">
+    <span class="section-tag">Blood Donors</span>
+    <h1 class="section-title">Find a <span>Donor</span></h1>
+    <p class="section-sub">Search from <strong id="totalDonorCount">0</strong> verified donors. Real-time availability, verified contacts.</p>
+  </div>
+</div>
+
+<!-- SEARCH & FILTER -->
+<section class="section" style="padding-top:40px;padding-bottom:20px">
+  <div class="search-filter-box glass-card reveal">
+    <div class="search-filter-grid">
+      <div class="input-group" style="flex:2">
+        <label class="input-label" for="searchName">Search Donor</label>
+        <div class="input-with-icon">
+          <span class="input-icon">🔍</span>
+          <input type="text" class="input-field" id="searchName" placeholder="Name or city…" aria-label="Search donors by name or city"/>
+        </div>
+      </div>
+      <div class="input-group">
+        <label class="input-label" for="filterBlood">Blood Group</label>
+        <div class="input-with-icon">
+          <span class="input-icon">🩸</span>
+          <select class="input-field" id="filterBlood" aria-label="Filter by blood group">
+            <option value="">All Groups</option>
+            <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+            <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
+          </select>
+        </div>
+      </div>
+      <div class="input-group">
+        <label class="input-label" for="filterCity">City</label>
+        <div class="input-with-icon">
+          <span class="input-icon">📍</span>
+          <select class="input-field" id="filterCity" aria-label="Filter by city">
+            <option value="">All Cities</option>
+          </select>
+        </div>
+      </div>
+      <div class="input-group">
+        <label class="input-label" for="filterAvail">Availability</label>
+        <select class="input-field" id="filterAvail" aria-label="Filter by availability">
+          <option value="">All</option>
+          <option value="available">Available</option>
+          <option value="unavailable">Unavailable</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" id="clearFilters" style="align-self:flex-end;height:50px">Clear</button>
+    </div>
+    <!-- Blood group chips -->
+    <div class="qsearch-chips" style="margin-top:16px" role="group" aria-label="Quick blood group filter">
+      <span class="chip" data-bg="">All</span>
+      <span class="chip" data-bg="O+">O+</span><span class="chip" data-bg="O-">O-</span>
+      <span class="chip" data-bg="A+">A+</span><span class="chip" data-bg="A-">A-</span>
+      <span class="chip" data-bg="B+">B+</span><span class="chip" data-bg="B-">B-</span>
+      <span class="chip" data-bg="AB+">AB+</span><span class="chip" data-bg="AB-">AB-</span>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS INFO -->
+<section class="section" style="padding-top:0;padding-bottom:0">
+  <div class="results-info flex-between">
+    <p class="text-muted">Showing <strong id="resultCount">0</strong> donors</p>
+    <div class="flex gap-8">
+      <button class="btn-icon view-toggle active" id="gridView" title="Grid view" aria-label="Grid view">⊞</button>
+      <button class="btn-icon view-toggle" id="listView" title="List view" aria-label="List view">☰</button>
+    </div>
+  </div>
+</section>
+
+<!-- DONOR GRID -->
+<section class="section" style="padding-top:24px" id="donorsSection">
+  <div class="grid grid-auto" id="donorGrid" aria-live="polite" aria-label="Donor search results"></div>
+  <div id="noResults" class="no-results" style="display:none">
+    <div class="no-results-icon">🔍</div>
+    <h3>No donors found</h3>
+    <p class="text-muted">Try adjusting your filters or search term.</p>
+    <button class="btn btn-primary" onclick="clearAllFilters()">Clear Filters</button>
+  </div>
+</section>
+
+<!-- REGISTER CTA -->
+<section class="section section-alt" style="padding:60px 5%">
+  <div class="cta-content glass-card text-center" style="padding:50px 30px;max-width:700px;margin:0 auto">
+    <div style="font-size:3rem;margin-bottom:16px">🩸</div>
+    <h2 class="section-title" style="margin-bottom:12px">Can't find your blood group?</h2>
+    <p class="section-sub" style="margin-bottom:28px">Register as a donor and be the one who saves lives in your community.</p>
+    <a href="register.html" class="btn btn-primary btn-lg">Register as a Donor</a>
+  </div>
+</section>
+
+<!-- DONOR PROFILE MODAL -->
+<div class="modal-overlay" id="donorModal" role="dialog" aria-modal="true" aria-labelledby="modalDonorName">
+  <div class="modal">
+    <button class="modal-close" id="closeDonorModal" aria-label="Close">✕</button>
+    <div class="modal-header">
+      <div class="flex gap-16" style="align-items:center">
+        <div class="avatar avatar-xl" id="modalAvatar"></div>
+        <div>
+          <h2 id="modalDonorName" style="font-size:1.4rem;font-weight:800"></h2>
+          <div class="flex gap-8" style="margin-top:6px;align-items:center">
+            <span class="status-dot" id="modalStatus"></span>
+            <span id="modalStatusText" class="text-muted text-sm"></span>
+          </div>
+        </div>
+        <div class="blood-badge blood-badge-lg" id="modalBloodGroup" style="margin-left:auto"></div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="grid grid-2" style="gap:16px;margin-bottom:20px">
+        <div class="modal-info-card"><p class="text-muted text-sm">Age</p><p class="font-semibold" id="modalAge"></p></div>
+        <div class="modal-info-card"><p class="text-muted text-sm">City</p><p class="font-semibold" id="modalCity"></p></div>
+        <div class="modal-info-card"><p class="text-muted text-sm">Total Donations</p><p class="font-semibold text-primary" id="modalDonations"></p></div>
+        <div class="modal-info-card"><p class="text-muted text-sm">Last Donation</p><p class="font-semibold" id="modalLastDonation"></p></div>
+      </div>
+      <div class="modal-badges" id="modalBadges" style="margin-bottom:20px"></div>
+      <div id="modalContact" style="background:var(--surface-2);border-radius:var(--radius);padding:16px"></div>
+    </div>
+    <div class="modal-footer">
+      <a id="modalCallBtn" href="#" class="btn btn-primary w-full">📞 Contact Donor</a>
+    </div>
+  </div>
+</div>
+
+<nav class="bottom-nav">
+  <a href="index.html" class="bottom-nav-item"><span class="icon">🏠</span>Home</a>
+  <a href="donors.html" class="bottom-nav-item active"><span class="icon">🩸</span>Donors</a>
+  <a href="emergency.html" class="bottom-nav-item"><span class="icon">🚨</span>Emergency</a>
+  <a href="hospitals.html" class="bottom-nav-item"><span class="icon">🏥</span>Hospitals</a>
+  <a href="community.html" class="bottom-nav-item"><span class="icon">👥</span>Community</a>
+</nav>
+
+<button id="ai-chat-btn" aria-label="AI Assistant">🤖</button>
+<div class="chatbot-panel" id="chatPanel">
+  <div class="chat-header">
+    <div class="avatar avatar-sm" style="background:#fff;color:var(--primary)">🤖</div>
+    <div><p class="font-semibold" style="font-size:0.9rem">BloodCare AI</p><p style="font-size:0.75rem;opacity:0.8">Find the right donor</p></div>
+    <button style="margin-left:auto;color:#fff;font-size:1.1rem" id="closeChat">✕</button>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="chat-msg bot">Hi! I can help you find the right blood donor. What blood group are you looking for?</div>
+  </div>
+  <div class="chat-input-row">
+    <input type="text" id="chatInput" placeholder="Ask me anything…"/>
+    <button class="chat-send" id="chatSend">➤</button>
+  </div>
+</div>
+<div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+<script src="js/data.js?v=2"></script>
+<script src="js/main.js?v=2"></script>
+<script src="js/donors.js?v=2"></script>
+</body>
+</html>

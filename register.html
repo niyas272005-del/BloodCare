@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Register as a blood donor on BloodCare and start saving lives today."/>
+<title>Register as Donor – BloodCare</title>
+<link rel="stylesheet" href="css/style.css?v=2"/>
+<style>
+.register-layout{display:grid;grid-template-columns:1fr 1fr;min-height:100vh;padding-top:var(--nav-h);}
+.register-left{background:linear-gradient(135deg,#0d0d1a,#1a0a14);padding:60px 5%;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;}
+.register-left::before{content:'';position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(230,57,70,0.25),transparent 70%);top:-100px;left:-100px;border-radius:50%;}
+.register-left::after{content:'';position:absolute;width:300px;height:300px;background:radial-gradient(circle,rgba(255,107,107,0.15),transparent 70%);bottom:-80px;right:-80px;border-radius:50%;}
+.reg-left-content{position:relative;z-index:1;}
+.reg-title{font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;color:#fff;line-height:1.2;margin-bottom:20px;}
+.reg-title span{background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.reg-desc{color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:36px;font-size:0.95rem;}
+.reg-benefits{display:flex;flex-direction:column;gap:14px;}
+.reg-benefit{display:flex;align-items:center;gap:12px;color:rgba(255,255,255,0.85);font-size:0.9rem;}
+.reg-benefit-icon{width:36px;height:36px;border-radius:50%;background:rgba(230,57,70,0.2);border:1px solid rgba(230,57,70,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.register-right{background:var(--bg);padding:60px 5%;display:flex;align-items:center;justify-content:center;overflow-y:auto;}
+.register-form-wrap{width:100%;max-width:480px;}
+.reg-form-title{font-family:var(--font-display);font-size:1.7rem;font-weight:800;margin-bottom:6px;}
+.reg-form-sub{color:var(--text-2);font-size:0.9rem;margin-bottom:32px;}
+.reg-form{display:flex;flex-direction:column;gap:18px;}
+.reg-form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-step-indicator{display:flex;gap:8px;margin-bottom:28px;}
+.step-dot{height:4px;border-radius:4px;background:var(--border);flex:1;transition:background 0.4s;}
+.step-dot.done{background:var(--primary);}
+.blood-group-selector{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.bg-option{padding:12px 8px;border:2px solid var(--border);border-radius:var(--radius-sm);text-align:center;cursor:pointer;font-weight:700;font-size:0.9rem;transition:all var(--transition);}
+.bg-option:hover,.bg-option.selected{border-color:var(--primary);background:rgba(230,57,70,0.1);color:var(--primary);}
+.consent-check{display:flex;align-items:flex-start;gap:10px;font-size:0.88rem;color:var(--text-2);cursor:pointer;}
+.consent-check input{margin-top:3px;accent-color:var(--primary);}
+.success-message{display:none;text-align:center;padding:40px 20px;}
+.success-icon{font-size:4rem;margin-bottom:16px;}
+@media(max-width:768px){.register-layout{grid-template-columns:1fr;}.register-left{padding:40px 5%;min-height:auto;}.reg-form-row{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div id="loader"><div class="loader-heart"></div><p class="loader-text">BloodCare</p></div>
+<nav class="navbar">
+  <a href="index.html" class="navbar-brand"><div class="brand-icon">❤️</div>BloodCare</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li><li><a href="donors.html">Donors</a></li>
+    <li><a href="hospitals.html">Hospitals</a></li><li><a href="community.html">Community</a></li>
+    <li><a href="emergency.html">Emergency</a></li><li><a href="education.html">Learn</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn-icon" id="themeToggle">🌙</button>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">🏠 Home</a><a href="donors.html">🩸 Donors</a>
+  <a href="hospitals.html">🏥 Hospitals</a><a href="community.html">👥 Community</a>
+  <a href="emergency.html">🚨 Emergency</a>
+</div>
+
+<main class="register-layout">
+  <!-- LEFT -->
+  <div class="register-left">
+    <div class="reg-left-content reveal-left">
+      <div style="font-size:3rem;margin-bottom:20px;animation:heartbeat 1.5s infinite">❤️</div>
+      <h1 class="reg-title">Become a <span>Blood Donor</span> Hero</h1>
+      <p class="reg-desc">Your single donation can save up to 3 lives. It takes just 30 minutes. Register now and be part of India's largest blood donor network.</p>
+      <div class="reg-benefits">
+        <div class="reg-benefit"><div class="reg-benefit-icon">🩸</div>Save up to 3 lives per donation</div>
+        <div class="reg-benefit"><div class="reg-benefit-icon">🏆</div>Earn badges and recognition</div>
+        <div class="reg-benefit"><div class="reg-benefit-icon">📱</div>Get notified for nearby requests</div>
+        <div class="reg-benefit"><div class="reg-benefit-icon">🏥</div>Priority access at partner hospitals</div>
+        <div class="reg-benefit"><div class="reg-benefit-icon">👥</div>Join a community of 8,500+ donors</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="register-right">
+    <div class="register-form-wrap">
+      <div id="formView">
+        <h2 class="reg-form-title">Create Donor Profile</h2>
+        <p class="reg-form-sub">Already a member? <a href="donors.html" style="color:var(--primary);font-weight:600">Find donors →</a></p>
+        <div class="form-step-indicator">
+          <div class="step-dot done" id="step1dot"></div>
+          <div class="step-dot" id="step2dot"></div>
+          <div class="step-dot" id="step3dot"></div>
+        </div>
+        <form class="reg-form" id="registerForm" novalidate>
+          <div class="reg-form-row">
+            <div class="input-group">
+              <label class="input-label" for="reg-fname">First Name *</label>
+              <input type="text" class="input-field" id="reg-fname" placeholder="Rahul" required/>
+            </div>
+            <div class="input-group">
+              <label class="input-label" for="reg-lname">Last Name *</label>
+              <input type="text" class="input-field" id="reg-lname" placeholder="Kumar" required/>
+            </div>
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="reg-email">Email Address *</label>
+            <div class="input-with-icon">
+              <span class="input-icon">📧</span>
+              <input type="email" class="input-field" id="reg-email" placeholder="you@example.com" required/>
+            </div>
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="reg-phone">Phone Number *</label>
+            <div class="input-with-icon">
+              <span class="input-icon">📞</span>
+              <input type="tel" class="input-field" id="reg-phone" placeholder="+91 98765 43210" required/>
+            </div>
+          </div>
+          <div class="reg-form-row">
+            <div class="input-group">
+              <label class="input-label" for="reg-age">Age *</label>
+              <input type="number" class="input-field" id="reg-age" placeholder="25" min="18" max="65" required/>
+            </div>
+            <div class="input-group">
+              <label class="input-label" for="reg-gender">Gender</label>
+              <select class="input-field" id="reg-gender">
+                <option value="">Select</option>
+                <option>Male</option><option>Female</option><option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="reg-city">City *</label>
+            <div class="input-with-icon">
+              <span class="input-icon">📍</span>
+              <input type="text" class="input-field" id="reg-city" placeholder="Mumbai" required/>
+            </div>
+          </div>
+          <div class="input-group">
+            <label class="input-label">Blood Group *</label>
+            <div class="blood-group-selector" id="bgSelector">
+              <div class="bg-option" data-bg="A+">A+</div><div class="bg-option" data-bg="A-">A-</div>
+              <div class="bg-option" data-bg="B+">B+</div><div class="bg-option" data-bg="B-">B-</div>
+              <div class="bg-option" data-bg="AB+">AB+</div><div class="bg-option" data-bg="AB-">AB-</div>
+              <div class="bg-option" data-bg="O+">O+</div><div class="bg-option" data-bg="O-">O-</div>
+            </div>
+            <input type="hidden" id="reg-blood" required/>
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="reg-lastdonation">Last Donation Date</label>
+            <input type="date" class="input-field" id="reg-lastdonation"/>
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="reg-avail">Availability</label>
+            <select class="input-field" id="reg-avail">
+              <option value="available">Available to Donate</option>
+              <option value="unavailable">Not Available Currently</option>
+            </select>
+          </div>
+          <label class="consent-check">
+            <input type="checkbox" id="reg-consent" required/>
+            <span>I confirm that the information provided is accurate and I consent to being contacted by patients in need of blood donation. I am in good health and eligible to donate blood.</span>
+          </label>
+          <button type="submit" class="btn btn-primary btn-lg w-full" style="margin-top:4px">🩸 Register as Donor</button>
+          <p class="text-center text-muted text-sm">By registering, you agree to our <a href="#" style="color:var(--primary)">Terms of Service</a> and <a href="#" style="color:var(--primary)">Privacy Policy</a>.</p>
+        </form>
+      </div>
+      <!-- SUCCESS -->
+      <div class="success-message" id="successView">
+        <div class="success-icon">🎉</div>
+        <h2 style="font-size:1.8rem;font-weight:800;margin-bottom:12px">You're a <span style="color:var(--primary)">BloodCare Hero!</span></h2>
+        <p class="text-muted" style="margin-bottom:8px;line-height:1.7">Your donor profile has been created successfully. You'll be notified when someone in your city needs your blood group.</p>
+        <p class="text-muted" style="margin-bottom:32px">Check your email for confirmation and your digital donor card.</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+          <a href="donors.html" class="btn btn-primary">Find Other Donors</a>
+          <a href="community.html" class="btn btn-outline">Join Community</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<button id="ai-chat-btn" aria-label="AI Assistant">🤖</button>
+<div class="chatbot-panel" id="chatPanel">
+  <div class="chat-header"><div class="avatar avatar-sm" style="background:#fff;color:var(--primary)">🤖</div><div><p class="font-semibold" style="font-size:0.9rem">BloodCare AI</p></div><button style="margin-left:auto;color:#fff" id="closeChat">✕</button></div>
+  <div class="chat-messages" id="chatMessages"><div class="chat-msg bot">Ready to become a donor? I can answer any questions about eligibility or the registration process!</div></div>
+  <div class="chat-input-row"><input type="text" id="chatInput" placeholder="Ask me anything…"/><button class="chat-send" id="chatSend">➤</button></div>
+</div>
+<div class="toast-container" id="toastContainer" aria-live="polite"></div>
+<script src="js/data.js?v=2"></script>
+<script src="js/main.js?v=2"></script>
+<script>
+'use strict';
+document.addEventListener('DOMContentLoaded',()=>{
+  let selectedBG='';
+  document.querySelectorAll('.bg-option').forEach(opt=>{
+    opt.addEventListener('click',()=>{
+      document.querySelectorAll('.bg-option').forEach(o=>o.classList.remove('selected'));
+      opt.classList.add('selected');
+      selectedBG=opt.dataset.bg;
+      document.getElementById('reg-blood').value=selectedBG;
+    });
+  });
+  document.getElementById('registerForm')?.addEventListener('submit',e=>{
+    e.preventDefault();
+    const fname=document.getElementById('reg-fname').value.trim();
+    const phone=document.getElementById('reg-phone').value.trim();
+    const city=document.getElementById('reg-city').value.trim();
+    const consent=document.getElementById('reg-consent').checked;
+    if(!fname||!phone||!city||!selectedBG||!consent){
+      showToast('Please fill in all required fields and select a blood group.','error');return;
+    }
+    document.getElementById('step1dot').classList.add('done');
+    document.getElementById('step2dot').classList.add('done');
+    document.getElementById('step3dot').classList.add('done');
+    setTimeout(()=>{
+      document.getElementById('formView').style.display='none';
+      document.getElementById('successView').style.display='block';
+      showToast('🎉 Registration successful! Welcome to BloodCare!','success',5000);
+    },600);
+  });
+});
+</script>
+</body>
+</html>

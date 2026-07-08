@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Find blood banks and hospitals with real-time blood availability near you."/>
+<title>Hospitals & Blood Banks – BloodCare</title>
+<link rel="stylesheet" href="css/style.css?v=2"/>
+<style>
+.page-header{background:linear-gradient(135deg,#050d1a,#0a1a2d);padding:calc(var(--nav-h)+50px) 5% 60px;text-align:center;}
+.page-header .section-title,.page-header .section-sub{color:#fff;}
+.hosp-filters{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:32px;align-items:center;}
+.hosp-search{flex:1;min-width:200px;}
+.emergency-only-label{display:flex;align-items:center;gap:8px;font-size:0.9rem;color:var(--text-2);cursor:pointer;padding:10px 16px;border:1.5px solid var(--border);border-radius:50px;transition:all var(--transition);}
+.emergency-only-label:hover{border-color:var(--primary);color:var(--primary);}
+.emergency-only-label input{accent-color:var(--primary);}
+.hosp-stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:48px;}
+.hosp-stat{background:var(--surface);border-radius:var(--radius);padding:28px;text-align:center;border:1px solid var(--border);box-shadow:var(--glass-shadow);}
+.hosp-stat-num{font-size:2.2rem;font-weight:900;color:var(--primary);display:block;}
+.hosp-stat-label{font-size:0.88rem;color:var(--text-2);margin-top:6px;}
+.legend-row{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:24px;font-size:0.85rem;}
+.legend-item{display:flex;align-items:center;gap:6px;color:var(--text-2);}
+.legend-dot{width:10px;height:10px;border-radius:50%;}
+@media(max-width:768px){.hosp-stat-row{grid-template-columns:1fr 1fr;}.hosp-filters{flex-direction:column;}.hosp-search{min-width:100%;}}
+</style>
+</head>
+<body>
+<div id="loader"><div class="loader-heart"></div><p class="loader-text">BloodCare</p></div>
+<nav class="navbar">
+  <a href="index.html" class="navbar-brand"><div class="brand-icon">❤️</div>BloodCare</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li><li><a href="donors.html">Donors</a></li>
+    <li><a href="hospitals.html" class="active">Hospitals</a></li><li><a href="community.html">Community</a></li>
+    <li><a href="emergency.html">Emergency</a></li><li><a href="education.html">Learn</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn-icon" id="themeToggle">🌙</button>
+    <a href="register.html" class="btn btn-primary btn-sm">Become Donor</a>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">🏠 Home</a><a href="donors.html">🩸 Donors</a>
+  <a href="hospitals.html" class="active">🏥 Hospitals</a><a href="community.html">👥 Community</a>
+  <a href="emergency.html">🚨 Emergency</a><a href="education.html">📚 Learn</a>
+</div>
+
+<div class="page-header">
+  <div class="reveal">
+    <span class="section-tag">Blood Banks</span>
+    <h1 class="section-title">Hospitals & <span>Blood Banks</span></h1>
+    <p class="section-sub">Real-time blood availability at <strong style="color:var(--accent)">320+</strong> partner hospitals across India.</p>
+  </div>
+</div>
+
+<section class="section" style="padding-top:50px">
+  <div class="hosp-stat-row reveal">
+    <div class="hosp-stat"><span class="hosp-stat-num">320+</span><div class="hosp-stat-label">🏥 Partner Hospitals</div></div>
+    <div class="hosp-stat"><span class="hosp-stat-num">48</span><div class="hosp-stat-label">🚨 Emergency Centers</div></div>
+    <div class="hosp-stat"><span class="hosp-stat-num">24/7</span><div class="hosp-stat-label">⏰ Always Available</div></div>
+  </div>
+
+  <div class="hosp-filters reveal">
+    <div class="input-with-icon hosp-search">
+      <span class="input-icon">🔍</span>
+      <input type="text" class="input-field" id="hospSearch" placeholder="Search hospital or city…" aria-label="Search hospitals"/>
+    </div>
+    <select class="input-field" id="hospBlood" style="width:auto;min-width:140px" aria-label="Filter by blood group">
+      <option value="">All Blood Groups</option>
+      <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+      <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
+    </select>
+    <label class="emergency-only-label">
+      <input type="checkbox" id="emergencyOnly"/> Emergency Only
+    </label>
+  </div>
+
+  <div class="legend-row reveal">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--success)"></div>High Availability</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--warning)"></div>Medium / Low</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--danger)"></div>Critical / None</div>
+    <div class="legend-item"><span class="badge badge-red">🚨 Emergency</span> 24/7 Emergency Center</div>
+  </div>
+
+  <div class="grid grid-3 reveal" id="hospitalGrid"></div>
+  <div id="hospNoResults" style="display:none;text-align:center;padding:60px 20px">
+    <div style="font-size:3rem;margin-bottom:12px">🏥</div>
+    <h3>No hospitals found</h3>
+    <p class="text-muted">Try a different search or blood group.</p>
+  </div>
+</section>
+
+<!-- Add Hospital CTA -->
+<section class="section section-alt" style="padding:60px 5%">
+  <div class="glass-card text-center" style="padding:50px 30px;max-width:700px;margin:0 auto">
+    <div style="font-size:3rem;margin-bottom:16px">🏥</div>
+    <h2 class="section-title" style="margin-bottom:12px">Is your hospital <span>listed?</span></h2>
+    <p class="section-sub" style="margin-bottom:28px">Partner with BloodCare to connect with thousands of verified donors in real-time.</p>
+    <a href="contact.html" class="btn btn-primary btn-lg">Partner With Us</a>
+  </div>
+</section>
+
+<nav class="bottom-nav">
+  <a href="index.html" class="bottom-nav-item"><span class="icon">🏠</span>Home</a>
+  <a href="donors.html" class="bottom-nav-item"><span class="icon">🩸</span>Donors</a>
+  <a href="emergency.html" class="bottom-nav-item"><span class="icon">🚨</span>Emergency</a>
+  <a href="hospitals.html" class="bottom-nav-item active"><span class="icon">🏥</span>Hospitals</a>
+  <a href="community.html" class="bottom-nav-item"><span class="icon">👥</span>Community</a>
+</nav>
+<button id="ai-chat-btn" aria-label="AI Assistant">🤖</button>
+<div class="chatbot-panel" id="chatPanel">
+  <div class="chat-header"><div class="avatar avatar-sm" style="background:#fff;color:var(--primary)">🤖</div><div><p class="font-semibold" style="font-size:0.9rem">BloodCare AI</p></div><button style="margin-left:auto;color:#fff" id="closeChat">✕</button></div>
+  <div class="chat-messages" id="chatMessages"><div class="chat-msg bot">Looking for a nearby blood bank? Tell me your city and I'll help!</div></div>
+  <div class="chat-input-row"><input type="text" id="chatInput" placeholder="Ask me anything…"/><button class="chat-send" id="chatSend">➤</button></div>
+</div>
+<div class="toast-container" id="toastContainer" aria-live="polite"></div>
+<script src="js/data.js?v=2"></script>
+<script src="js/main.js?v=2"></script>
+<script>
+'use strict';
+document.addEventListener('DOMContentLoaded', () => {
+  const grid = document.getElementById('hospitalGrid');
+  const noRes = document.getElementById('hospNoResults');
+  function render() {
+    const q = document.getElementById('hospSearch').value.toLowerCase();
+    const bg = document.getElementById('hospBlood').value;
+    const emergOnly = document.getElementById('emergencyOnly').checked;
+    let data = BC_HOSPITALS.filter(h => {
+      if (q && !h.name.toLowerCase().includes(q) && !h.address.toLowerCase().includes(q)) return false;
+      if (bg && !Object.keys(h.blood).includes(bg)) return false;
+      if (emergOnly && !h.emergency) return false;
+      return true;
+    });
+    if (!data.length) { grid.innerHTML=''; noRes.style.display='block'; }
+    else { noRes.style.display='none'; grid.innerHTML = data.map(createHospitalCard).join(''); }
+  }
+  document.getElementById('hospSearch').addEventListener('input', render);
+  document.getElementById('hospBlood').addEventListener('change', render);
+  document.getElementById('emergencyOnly').addEventListener('change', render);
+  render();
+});
+</script>
+</body>
+</html>
